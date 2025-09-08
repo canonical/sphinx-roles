@@ -1,8 +1,3 @@
-> [!WARNING]
-> This repository has been superceded by
-> [canonical/sphinx-roles](https://github.com/canonical/sphinx-roles) and
-> will no longer be maintained.
-
 # sphinx-roles
 
 `sphinx-roles` houses the `literalref`, `spellexception`, and `none` roles.
