@@ -27,8 +27,8 @@ This project is licensed under [GPL-3.0](LICENSE).
 ## Report an issue or open a request
 
 If you find a bug or feature gap in the project, look for it in the [project's GitHub
-issues](https://github.com/canonical/sphinx-roles/issues) first. If you have
-fresh input, add your voice to the issue.
+issues](https://github.com/canonical/sphinx-roles/issues) first. If you have fresh
+input, add your voice to the issue.
 
 If the bug or feature doesn't have an issue, we invite you to [open
 one](https://github.com/canonical/sphinx-roles/issues/new/choose).
@@ -39,21 +39,34 @@ This project uses a forking, feature-based workflow. Most work occurs on people'
 systems and is heavily terminal-dependent. Remote testing and building is provided on
 GitHub for continuous integration and delivery.
 
-Start by [creating a personal
-fork](https://github.com/canonical/sphinx-roles/fork) of the repository on
-GitHub.
+Start by [creating a personal fork](https://github.com/canonical/sphinx-roles/fork) of
+the repository on GitHub.
 
-Next, on your host system, clone your fork:
+Next, on your host system, clone your fork and sync it with the upstream repository:
 
 ```bash
-git clone git@github.com:<username>/sphinx-roles.git --recurse-submodules
+git clone git@github.com:<username>/sphinx-roles --recurse-submodules
+cd sphinx-roles
+git remote add upstream git@github.com:canonical/sphinx-roles
+git fetch upstream
+```
+
+If you don't authenticate with SSH, clone with
+[HTTPS](https://docs.github.com/en/get-started/git-basics/about-remote-repositories#cloning-with-https-urls)
+instead:
+
+```bash
+git clone https://github.com/<username>/sphinx-roles --recurse-submodules
+cd sphinx-roles
+git remote add upstream https://github.com/canonical/sphinx-roles
+git fetch upstream
 ```
 
 Inside the project directory, set up the virtual development environment and install all
 dependencies, linters, and testers:
 
 ```bash
-make setup
+make install
 make lint
 make test
 ```
@@ -85,27 +98,17 @@ changes on.
 
 ```bash
 git checkout main
-git pull
-make setup
+git pull upstream main
+git checkout -b <new-branch-name>
+make install
 ```
 
-Next, create a new branch against your chosen base. The new branch name should be brief,
-at no more than 80 characters.
+The new branch name should be brief, at no more than 80 characters. Format your branch
+name as `<ticket-id>-<description>`. For example, if you're working on GitHub issue
+\#235, and it's about adding a string sanitizer, you'd name your branch
+`issue-235-add-string-sanitizer-method`.
 
-If you're working on a ticket, format your branch name as `<ticket-id>-<description>`.
-For example, if you're working on GitHub issue \#235, and it's about adding a string
-sanitizer, use the format:
-
-```bash
-git checkout -b issue-235-add-string-sanitizer-method
-```
-
-If you have a small ad-hoc change with no ticket, make the name distinct and meaningful.
-For example, if you're fixing a typo, use the format:
-
-```bash
-git checkout -b string-sanitizer-fix-typo
-```
+````
 
 ### Commit a change
 
@@ -115,7 +118,7 @@ committing:
 ```bash
 git add -A
 git commit
-```
+````
 
 Format the commit message according to the [Conventional
 Commits](https://www.conventionalcommits.org/en/v1.0.0/) style. For the sanitizer
@@ -138,8 +141,8 @@ done browsing, press `Q` to exit the interactive log.
 > bug. That should be two separate commits.
 >
 > In other scenarios, multiple types could be appropriate because of the nature of the
-> commit. This can happen with test and docs, which can be used as either types or
-> scopes.
+> commit. This can happen with `test` and `docs`, which can be used as either types
+> or scopes.
 >
 > Run down the following list and select the highest-ranked type that fits your change:
 >
@@ -154,15 +157,19 @@ done browsing, press `Q` to exit the interactive log.
 > - docs
 > - chore
 
-Committing triggers the pre-commit hook, which runs the automatic code formatter and the
-fast linters.
+Committing triggers the [pre-commit](https://pre-commit.com/) hook, which runs the
+automatic code formatter and the fast linters.
 
 If the linters reformatted any of the files, the commit was cancelled. To make the
 changes stick, restage the modified files with `git add -A` and commit again.
 
 ### Test the change
 
-Test early and often, especially before you plan to open a pull request.
+All nontrivial code changes should be accompanied by a reasonable set of tests.
+
+The sphinx-roles test suite includes both unit and integration tests. If you're not
+sure which tests you should add, go with your best judgement – additional tests can be
+added during the review process.
 
 Once you've made your changes, run the test suite:
 
@@ -183,7 +190,7 @@ code. In such cases, it's best to delete your virtual environment and start over
 ```bash
 rm -rf .venv
 make clean
-make setup
+make install
 ```
 
 ### Push the branch and open a PR
