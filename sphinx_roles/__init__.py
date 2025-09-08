@@ -1,4 +1,4 @@
-# This file is part of sphinx-ext-template.
+# This file is part of sphinx-roles.
 #
 # Copyright 2025 Canonical Ltd.
 #
@@ -13,12 +13,13 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # this program.  If not, see <http://www.gnu.org/licenses/>.
-
-"""Adds the directive to Sphinx."""
+"""Adds the extension's roles to Sphinx."""
 
 from sphinx.util.typing import ExtensionMetadata
 from sphinx.application import Sphinx
-from .hello import HelloDirective
+from .domain import LiteralrefDomain
+from .roles import SpellExceptionRole, NoneRole, LiteralrefRole
+
 
 try:
     from ._version import __version__
@@ -26,17 +27,21 @@ except ImportError:  # pragma: no cover
     from importlib.metadata import version, PackageNotFoundError
 
     try:
-        __version__ = version("hello_ext")
+        __version__ = version("sphinx_roles")
     except PackageNotFoundError:
         __version__ = "dev"
 
 
 def setup(app: Sphinx) -> ExtensionMetadata:
-    """Add the extension's directive to Sphinx.
+    """Add the extension's roles to Sphinx.
 
     :returns: ExtensionMetadata
     """
-    app.add_directive("hello", HelloDirective)
+    app.add_domain(LiteralrefDomain)
+
+    app.add_role("spellexception", SpellExceptionRole())
+    app.add_role("literalref", LiteralrefRole())
+    app.add_role("none", NoneRole())
 
     return {
         "version": __version__,
