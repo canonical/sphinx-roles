@@ -1,55 +1,68 @@
-# hello-ext
+> [!WARNING]
+> This repository has been superceded by
+> [canonical/sphinx-roles](https://github.com/canonical/sphinx-roles) and
+> will no longer be maintained.
 
-<!-- Answer elevator-pitch questions about the extension – What is it? What does it do? What
-essential problem does it solve? -->
+# sphinx-roles
 
-hello-ext adds a Sphinx directive that generates a custom greeting.
+`sphinx-roles` houses the `literalref`, `spellexception`, and `none` roles.
 
 ## Basic usage
 
-<!-- Provide a few examples of the extension's most common use cases. Remember the Pareto
-principle! -->
+### literalref
 
-To generate a greeting, add the `hello` directive to your document:
+To add a monospaced reference to your document, pass the target or URL to the
+`literalref` role:
 
 ```
-.. hello:: world!
+:literalref:`link text <ref-target>`
+
+:literalref:`link text <https://example.com>`
+```
+
+### spellexception
+
+To exempt a string from spell checking, wrap it in the `spellexception` role:
+
+```
+:spellexception:`Lorem ipsum`
+```
+
+### none
+
+To prevent a string from being rendered in the document, wrap it in the `none` role:
+
+```
+:none:`This text isn't rendered.`
 ```
 
 ## Project setup
 
-<!-- Provide the simplest way to install the extension. In most cases, this will
-be via `pip`. -->
-
-hello-ext is published on PyPI and can be installed with:
+sphinx-roles is published on PyPI and can be installed with:
 
 ```bash
-pip install hello-ext
+pip install sphinx-roles
 ```
 
-After adding hello-ext to your Python project, update your Sphinx's conf.py file to
-include hello-ext as one of its extensions:
+After adding sphinx-roles to your Python project, update your Sphinx's `conf.py`
+file to include `sphinx_roles` as an extension:
 
 ```python
 extensions = [
-    "hello_ext"
+    "sphinx_roles"
 ]
 ```
 
 ## Community and support
 
-<!-- This is boilerplate. Replace the extension name and GitHub link. -->
-
 You can report any issues or bugs on the project's [GitHub
-repository](https://github.com/canonical/sphinx-ext-template).
+repository](https://github.com/canonical/sphinx-roles).
 
-hello-ext is covered by the [Ubuntu Code of
+sphinx-roles is covered by the [Ubuntu Code of
 Conduct](https://ubuntu.com/community/ethos/code-of-conduct).
 
 ## License and copyright
 
-<!-- Replace the extension name and, if necessary, the extension's license. -->
-
-hello-ext is released under the [GPL-3.0 license](LICENSE).
+sphinx-roles is released under the [GPL-3.0 license](LICENSE).
 
 © 2025 Canonical Ltd.

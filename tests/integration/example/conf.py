@@ -1,4 +1,4 @@
-# This file is part of sphinx-ext-template.
+# This file is part of sphinx-roles.
 #
 # Copyright 2025 Canonical Ltd.
 #
@@ -27,5 +27,6 @@ html_title = project
 html_theme = "furo"
 
 extensions = [
-    "hello_ext",
+    "myst_parser",
+    "sphinx_roles",
 ]
