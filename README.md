@@ -1,6 +1,6 @@
 # sphinx-roles
 
-`sphinx-roles` houses the `literalref`, `spellexception`, and `none` roles.
+sphinx-roles houses the `literalref`, `spellexception`, and `none` roles.
 
 ## Basic usage
 
