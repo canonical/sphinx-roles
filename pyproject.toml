@@ -2,7 +2,7 @@
 name = "sphinx-roles"
 description = "Canonical's custom Sphinx roles."
 dynamic = ["version", "readme"]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "docutils>=0.21.2",
     "sphinx~=7.0",
@@ -95,7 +95,7 @@ exclude_also = ["if (typing\\.)?TYPE_CHECKING:"]
 
 [tool.pyright]
 strict = ["sphinx_roles"]
-pythonVersion = "3.10"
+pythonVersion = "3.11"
 pythonPlatform = "Linux"
 exclude = [
     "**/.*",
@@ -105,7 +105,7 @@ exclude = [
 ]
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 exclude = ["build", "results"]
 warn_unused_configs = true
 warn_redundant_casts = true
@@ -127,7 +127,7 @@ strict = false
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
+target-version = "py311"
 src = ["sphinx_roles", "tests"]
 
 [tool.ruff.format]
