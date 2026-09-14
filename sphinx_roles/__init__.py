@@ -18,7 +18,7 @@
 from sphinx.util.typing import ExtensionMetadata
 from sphinx.application import Sphinx
 from .domain import LiteralrefDomain
-from .roles import SpellExceptionRole, NoneRole, LiteralrefRole
+from .roles import SpellExceptionRole, LiteralrefRole
 
 
 try:
@@ -41,7 +41,6 @@ def setup(app: Sphinx) -> ExtensionMetadata:
 
     app.add_role("spellexception", SpellExceptionRole())
     app.add_role("literalref", LiteralrefRole())
-    app.add_role("none", NoneRole())
 
     return {
         "version": __version__,

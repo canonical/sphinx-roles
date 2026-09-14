@@ -5,8 +5,6 @@ Test doc
 
 :spellexception:`i can spel`
 
-:none:`This does nothing!`
-
 :literalref:`external link <https://github.com/canonical/sphinx-roles>`
 
 :literalref:`internal same page <rst-label>`

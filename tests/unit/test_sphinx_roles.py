@@ -17,17 +17,11 @@
 import pytest
 from docutils import nodes
 from sphinx import addnodes
-from sphinx_roles.roles import LiteralrefRole, NoneRole, SpellExceptionRole
+from sphinx_roles.roles import LiteralrefRole, SpellExceptionRole
 from typing_extensions import override
 
 
 class FakeSpellExceptionRole(SpellExceptionRole):
-    @override
-    def __init__(self, text):
-        self.text = text
-
-
-class FakeNoneRole(NoneRole):
     @override
     def __init__(self, text):
         self.text = text
@@ -50,15 +44,6 @@ def fake_spellexception_role(request: pytest.FixtureRequest) -> FakeSpellExcepti
 
 
 @pytest.fixture
-def fake_none_role(request: pytest.FixtureRequest) -> FakeNoneRole:
-    """This fixture can be parametrized to override the default values."""
-    # Get any optional overrides from the fixtures
-    overrides = request.param if hasattr(request, "param") else {}
-
-    return FakeNoneRole(text=overrides.get("text", ""))
-
-
-@pytest.fixture
 def fake_literalref_role(request: pytest.FixtureRequest) -> FakeLiteralrefRole:
     """This fixture can be parametrized to override the default values."""
     # Get any optional overrides from the fixtures
@@ -67,18 +52,6 @@ def fake_literalref_role(request: pytest.FixtureRequest) -> FakeLiteralrefRole:
     return FakeLiteralrefRole(
         title=overrides.get("title", ""), target=overrides.get("target", "")
     )
-
-
-@pytest.mark.parametrize(
-    "fake_none_role",
-    [{"text": "this does nothing."}],
-    indirect=True,
-)
-def test_none_role(fake_none_role: FakeNoneRole):
-    expected: tuple[list[nodes.Node], list[nodes.system_message]] = [], []
-    actual = fake_none_role.run()
-
-    assert str(expected) == str(actual)
 
 
 @pytest.mark.parametrize(
