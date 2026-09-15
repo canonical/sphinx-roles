@@ -1,6 +1,6 @@
 # sphinx-roles
 
-sphinx-roles houses the `literalref`, `spellexception`, and `none` roles.
+sphinx-roles contains the `literalref` and `spellexception` roles.
 
 ## Basic usage
 
@@ -21,14 +21,6 @@ To exempt a string from spell checking, wrap it in the `spellexception` role:
 
 ```
 :spellexception:`Lorem ipsum`
-```
-
-### none
-
-To prevent a string from being rendered in the document, wrap it in the `none` role:
-
-```
-:none:`This text isn't rendered.`
 ```
 
 ## Project setup

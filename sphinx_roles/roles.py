@@ -33,14 +33,6 @@ class SpellExceptionRole(SphinxRole):
         return [node], []
 
 
-class NoneRole(SphinxRole):
-    """Define the none role's behavior."""
-
-    def run(self) -> tuple[list[nodes.Node], list[nodes.system_message]]:
-        """Do nothing."""
-        return [], []
-
-
 class LiteralrefRole(ReferenceRole):
     """Define the literalref role's behavior."""
 
